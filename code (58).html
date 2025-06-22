@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swapnil Agrawal - Dental Student & AI Enthusiast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ==== Global Styles ==== */
+        :root {
+            --dark-bg: #1a1a2e; /* Deep Navy Blue */
+            --dark-card-bg: #222; /* Slightly lighter dark gray */
+            --primary-color: #ff6f61; /* Coral Red */
+            --secondary-color: #884bff; /* Vibrant Purple */
+            --accent-color: #00bcd4; /* Cyan for contrast */
+            --text-dark: #333;
+            --text-medium: #bbb; /* Light gray for text */
+            --text-light: #eee; /* Very light gray/white */
+            --text-white: #ffffff;
+            --bg-hover: #e65a52; /* Darker Coral Red */
+            --hero-gradient-start: #884bff; /* Purple */
+            --hero-gradient-end: #ff6f61; /* Coral */
+            --header-bg: #161625; /* Darker background for header */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-medium);
+            scroll-behavior: smooth;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1100px;
+            padding: 0 15px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--bg-hover);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--bg-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* ==== Header ==== */
+        header {
+            background-color: var(--header-bg);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Darker shadow */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-medium);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary-color);
+        }
+
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* ==== Hero Section ==== */
+        .hero {
+            background: linear-gradient(135deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--text-white);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh; /* Make hero section taller */
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1100px;
+            text-align: left;
+            position: relative; /* For z-index */
+            z-index: 10;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 55%; /* More space for text */
+            padding-right: 30px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 1s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem; /* Larger title */
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            color: var(--text-white); /* White text for hero */
+        }
+
+        .hero-text p {
+            font-size: 1.6rem; /* Larger subtitle */
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: var(--text-light); /* Slightly lighter text */
+        }
+
+        .hero-image-wrapper { /* Wrapper for the image */
+            flex: 1;
+            max-width: 40%; /* Image container width */
+            opacity: 0;
+            transform: translateX(20px);
+            animation: slideInRight 1s ease-out forwards;
+            animation-delay: 0.8s;
+        }
+
+        .hero-image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 15px; /* Slightly rounded corners */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2); /* Shadow for image */
+        }
+
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ==== About Section ==== */
+        .about {
+            padding: 80px 0;
+            background-color: var(--dark-card-bg); /* Darker card background */
+            text-align: center;
+            opacity: 0;
+            animation: sectionFadeIn 1s ease-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        .about h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-medium);
+        }
+
+        /* ==== Portfolio Section ==== */
+        .portfolio {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .portfolio h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .portfolio-item {
+            background-color: var(--dark-card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Darker shadow */
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .portfolio-item:hover img {
+            transform: translateY(-15px);
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-content h3 {
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .portfolio-content p {
+            font-size: 0.98rem;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+        }
+
+        /* ==== YouTube Video Preview Item ==== */
+        .portfolio-video-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0; /* Match portfolio-item border-radius */
+        }
+
+        .portfolio-video-wrapper img {
+            width: 100%;
+            height: 220px; /* Consistent height */
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .portfolio-item:hover .portfolio-video-wrapper img {
+            transform: translateY(-15px);
+        }
+
+        /* ==== YouTube Section Card ==== */
+        .youtube-card {
+            background-color: var(--dark-card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            padding: 30px;
+            max-width: 450px; /* Card width */
+            margin: 0 auto;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .youtube-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+        }
+
+        .youtube-card-icon { /* Styling for the YouTube icon */
+            width: 100px; /* Channel icon size */
+            height: 100px;
+            border-radius: 50%; /* Circular thumbnail */
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 3px solid var(--primary-color); /* Border around thumbnail */
+            display: block; /* Ensure it takes proper space */
+        }
+
+        .youtube-card h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .youtube-card p {
+            font-size: 1rem;
+            color: var(--text-medium);
+            margin-bottom: 25px;
+        }
+
+        .youtube-card .btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+        /* ==== YouTube & Books Sections (Reusing styles) ==== */
+        .youtube, .books {
+            padding: 80px 0;
+            background-color: var(--dark-bg); /* Use main dark background */
+            text-align: center;
+        }
+        .youtube h2, .books h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        .youtube p, .books p {
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            color: var(--text-medium);
+        }
+
+        /* ==== Contact Section ==== */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--dark-card-bg); /* Darker card background */
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .contact p {
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            color: var(--text-medium);
+        }
+
+        .contact-form {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: var(--dark-card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #333; /* Darker border */
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--dark-bg); /* Dark input background */
+            color: var(--text-light);
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 90, 82, 0.3); /* Focus ring with primary color */
+        }
+
+        .contact-form textarea {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* ==== Footer ==== */
+        footer {
+            background-color: var(--header-bg); /* Using header background for footer */
+            color: var(--text-medium);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.95rem;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer .social-links {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        footer .social-links a {
+            color: var(--text-medium);
+            margin: 0 15px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* ==== Lightbox Styles ==== */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Darker overlay */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background-color: var(--dark-card-bg); /* Dark card background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Darker shadow */
+            animation: zoomIn 0.4s ease-out;
+        }
+
+        .lightbox-content img {
+            display: block;
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary-color);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ==== Section Fade-in Animation ==== */
+        @keyframes sectionFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Apply animation to relevant sections */
+        .about { animation: sectionFadeIn 1s ease-out forwards; animation-delay: 1.2s; }
+        .portfolio { animation: sectionFadeIn 1s ease-out forwards; animation-delay: 1.5s; }
+        .youtube { animation: sectionFadeIn 1s ease-out forwards; animation-delay: 1.8s; }
+        .books { animation: sectionFadeIn 1s ease-out forwards; animation-delay: 2.1s; }
+        .contact { animation: sectionFadeIn 1s ease-out forwards; animation-delay: 2.4s; }
+
+
+        /* ==== Responsive Adjustments ==== */
+        @media (max-width: 992px) {
+            .hero { padding: 60px 0; min-height: 60vh; }
+            .hero-content-wrapper { flex-direction: column; text-align: center; }
+            .hero-text { max-width: 100%; padding-right: 0; margin-bottom: 30px; }
+            .hero-image-wrapper { max-width: 60%; margin-top: 20px; } /* Image below text */
+            .hero-text h1 { font-size: 3rem; }
+            .hero-text p { font-size: 1.3rem; }
+            nav ul li { margin-left: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            header .container { flex-direction: column; }
+            .logo { margin-bottom: 15px; }
+            nav ul { flex-direction: column; text-align: center; }
+            nav ul li { margin: 10px 0; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { font-size: 1.2rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-item img { height: 180px; }
+            .contact-form { padding: 30px; }
+            footer .social-links a { font-size: 1.3rem; }
+            .hero-image-wrapper { max-width: 80%; } /* Image takes more space on smaller screens */
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 { font-size: 2rem; }
+            .hero-text p { font-size: 1.1rem; }
+            .btn { padding: 10px 20px; font-size: 0.9rem; }
+            .logo { font-size: 1.6rem; }
+            h2 { font-size: 2.2rem !important; }
+            .hero-image-wrapper { max-width: 100%; } /* Image takes full width on smallest screens */
+            .hero-content-wrapper { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==== Header ==== -->
+    <header>
+        <div class="container">
+            <div class="logo">Swapnil <span>Agrawal</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#youtube">YouTube</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==== Hero Section ==== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content-wrapper">
+                <div class="hero-text">
+                    <h1>Where Innovation Meets Care</h1>
+                    <p>A Dental Student Crafting the Future with AI & Creativity</p>
+                    <a href="#portfolio" class="btn">Explore My Creations</a>
+                </div>
+                <div class="hero-image-wrapper"> <!-- Image wrapper -->
+                    <img src="https://res.cloudinary.com/dz75k6rvk/image/upload/v1750621962/10d2f7b0-413d-47b9-b934-4141c5487492_bxj4ch.jpg" alt="Swapnil Agrawal">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== About Section ==== -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>Hello, I'm Swapnil Agrawal</h2>
+            <p>
+                Welcome to my digital canvas! As a dedicated Dental student at Pacific Dental College & Hospital, Udaipur, I balance my passion for oral healthcare with a deep fascination for Artificial Intelligence and technology. I thrive on exploring how AI can be a catalyst for creativity, bridging the gap between science, art, and everyday innovation. My journey includes publishing books on platforms like Amazon and Flipkart, and sharing my learning and creations on my YouTube channel. Let's connect and explore the possibilities!
+            </p>
+        </div>
+    </section>
+
+    <!-- ==== Portfolio Section ==== -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2>My Creative AI Works & Projects</h2>
+            <div class="portfolio-grid">
+                <!-- Entry 1: My AI-Edited Song -->
+                <div class="portfolio-item" data-image="https://img.youtube.com/vi/PZCa3evMHMg/hqdefault.jpg"> <!-- Thumbnail for the video -->
+                    <div class="portfolio-video-wrapper">
+                        <a href="https://youtu.be/PZCa3evMHMg?si=hBXnaBSFcKWwgAsX" target="_blank"> <!-- Corrected YouTube Video Link -->
+                            <img src="https://img.youtube.com/vi/PZCa3evMHMg/hqdefault.jpg" alt="My AI-Edited Song Thumbnail">
+                        </a>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>My AI-Edited Song</h3> <!-- Video Title -->
+                        <p>A song I wrote and created, enhanced with AI editing for a unique sonic experience.</p> <!-- Corrected Video Description -->
+                        <a href="https://youtu.be/PZCa3evMHMg?si=hBXnaBSFcKWwgAsX" target="_blank" class="btn btn-sm">Watch Song</a> <!-- Updated Button Text -->
+                    </div>
+                </div>
+
+                <!-- Entry 2: YouTube Vlog -->
+                <div class="portfolio-item" data-image="https://img.youtube.com/vi/XLiS8E1HiKY/hqdefault.jpg"> <!-- Thumbnail for the video -->
+                    <div class="portfolio-video-wrapper">
+                        <a href="https://youtu.be/XLiS8E1HiKY?si=452HAyWs_la3APvx" target="_blank"> <!-- Corrected YouTube Video Link -->
+                            <img src="https://img.youtube.com/vi/XLiS8E1HiKY/hqdefault.jpg" alt="YouTube Vlog Thumbnail">
+                        </a>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>My YouTube Vlog</h3> <!-- Video Title -->
+                        <p>A glimpse into my creative journey, exploring AI and its applications.</p> <!-- Updated Video Description -->
+                        <a href="https://youtu.be/XLiS8E1HiKY?si=452HAyWs_la3APvx" target="_blank" class="btn btn-sm">Watch Vlog</a> <!-- Updated Button Text -->
+                    </div>
+                </div>
+
+                <!-- New Project: Hugging Face LoRa Model -->
+                <div class="portfolio-item" data-image="https://res.cloudinary.com/dz75k6rvk/image/upload/v1750623277/1730233998843__000003000_0_qc0g8n.jpg">
+                    <img src="https://res.cloudinary.com/dz75k6rvk/image/upload/v1750623277/1730233998843__000003000_0_qc0g8n.jpg" alt="LoRa Model Sample">
+                    <div class="portfolio-content">
+                        <h3>LoRa Model: Swap Draws It</h3> <!-- Corrected Title -->
+                        <p>Fine-tuned LoRa model trained on my own hand-drawn arts for AI-powered image generation.</p> <!-- Corrected Description -->
+                        <a href="https://huggingface.co/glif-loradex-trainer/swapagrawal14_flux_dev_swap_draws_it" target="_blank" class="btn btn-sm">Explore Model</a>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn">Discover More Projects</a> <!-- Placeholder for more projects -->
+        </div>
+    </section>
+
+    <!-- ==== YouTube Section ==== -->
+    <section class="youtube" id="youtube">
+        <div class="container">
+            <h2>My YouTube Journey</h2>
+            <p>
+                Join me on my YouTube channel where I dive deep into AI, share tech tutorials, discuss creative projects, and explore the future of innovation. It's a space for learning and inspiration!
+            </p>
+            <!-- YouTube Channel Card -->
+            <div class="youtube-card">
+                <!-- ==== YOUR YOUTUBE CHANNEL ICON URL GOES HERE ==== -->
+                <!-- Make sure this URL is correct and publicly accessible. -->
+                <img src="https://res.cloudinary.com/dz75k6rvk/image/upload/v1750622570/23115c10-f79c-40eb-aabb-6c963125b656_dumm2j.jpg" alt="YouTube Channel Icon" class="youtube-card-icon">
+                <!-- ========================================================= -->
+                <h3>Swapnil Agrawal</h3>
+                <p>AI, Tech, Creativity & More!</p>
+                <a href="https://youtube.com/@swap_agrawal?si=pcMDK0HRTPH8thzX" class="btn" target="_blank">Visit Channel</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== Books Section ==== -->
+    <section class="books" id="books">
+        <div class="container">
+            <h2>My Published Books</h2>
+            <p>
+                Explore my authored books available on Amazon and Flipkart. Each one is a reflection of my diverse interests and insights into technology, creativity, and beyond.
+            </p>
+            <div class="portfolio-grid">
+                <!-- Book 1: Akalpnik Banjaran -->
+                <div class="portfolio-item" data-image="https://res.cloudinary.com/dz75k6rvk/image/upload/v1750624372/akalpnik-banjaran-original-imaghh86tns3teak_l895ye.jpg"> <!-- ACTUAL BOOK COVER URL -->
+                    <img src="https://res.cloudinary.com/dz75k6rvk/image/upload/v1750624372/akalpnik-banjaran-original-imaghh86tns3teak_l895ye.jpg" alt="Akalpnik Banjaran Book Cover"> <!-- ACTUAL BOOK COVER URL -->
+                    <div class="portfolio-content">
+                        <h3>Akalpnik Banjaran</h3> <!-- Corrected Book Title -->
+                        <p>A journey of self-discovery and adventure.</p> <!-- Placeholder Description, you can update this -->
+                        <a href="https://amzn.in/d/gyRn4He" target="_blank" class="btn btn-sm">Buy on Amazon</a>
+                    </div>
+                </div>
+                 <!-- Book 2: History and Future of AI -->
+                 <div class="portfolio-item" data-image="https://notionpress.com/coveruploads/1070496693resize_cover_432715.png"> <!-- ACTUAL BOOK COVER URL -->
+                    <img src="https://notionpress.com/coveruploads/1070496693resize_cover_432715.png" alt="History and Future of AI Book Cover"> <!-- ACTUAL BOOK COVER URL -->
+                    <div class="portfolio-content">
+                        <h3>History and Future of AI</h3> <!-- Corrected Book Title -->
+                        <p>Exploring the evolution and prospects of Artificial Intelligence.</p> <!-- Placeholder Description, you can update this -->
+                        <a href="https://amzn.in/d/bTuXl0r" target="_blank" class="btn btn-sm">Buy on Amazon</a> <!-- Corrected Link -->
+                    </div>
+                </div>
+            </div>
+             <a href="#" class="btn">View All Books</a> <!-- Placeholder -->
+        </div>
+    </section>
+
+    <!-- ==== Contact Section ==== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Let's Connect!</h2>
+            <p>Have an idea, a project, or just want to chat about AI and creativity? I'd love to hear from you!</p>
+            <div class="contact-form">
+                <form action="#" method="post">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required value="swapagrawal1411@gmail.com"> <!-- Pre-filled Gmail -->
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== Footer ==== -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <!-- Only LinkedIn and YouTube links are kept -->
+                <a href="https://www.linkedin.com/in/swapnil-agrawal-109a3321b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://youtube.com/@swap_agrawal?si=pcMDK0HRTPH8thzX" aria-label="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2025 Swapnil Agrawal. All rights reserved.</p> <!-- Copyright year updated -->
+            <p>
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==== Lightbox Overlay ==== -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img id="lightboxImage" src="" alt="Enlarged View">
+        </div>
+    </div>
+
+    <!-- ==== JavaScript ==== -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Update active link based on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        const updateActiveLink = () => {
+            let currentSection = '';
+            let scrollPosition = window.scrollY;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 70; // Adjusted offset for sticky header and some padding
+                const sectionHeight = section.clientHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') && link.getAttribute('href').startsWith('#') && link.getAttribute('href').substring(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', updateActiveLink);
+        document.addEventListener('DOMContentLoaded', updateActiveLink);
+
+
+        // Portfolio Image Lightbox
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imageSrc = this.getAttribute('data-image'); // This is for the thumbnail in lightbox
+                if (imageSrc) {
+                    lightboxImage.src = imageSrc;
+                    lightboxOverlay.classList.add('active');
+                }
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightboxOverlay.classList.remove('active');
+            lightboxImage.src = '';
+        });
+
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) {
+                lightboxOverlay.classList.remove('active');
+                lightboxImage.src = '';
+            }
+        });
+
+        // Section Fade-in Animation
+        const animatedSections = document.querySelectorAll('.about, .portfolio, .youtube, .books, .contact');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = parseFloat(getComputedStyle(entry.target).animationDelay) || 0;
+                    entry.target.style.animation = `sectionFadeIn 1s ease-out forwards ${delay}s`;
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        animatedSections.forEach((section, index) => {
+            section.style.animationDelay = `${1.2 + index * 0.3}s`;
+            sectionObserver.observe(section);
+        });
+
+        // ==== Update YOUR PHOTO URL HERE ====
+        const yourPhotoUrl = 'https://res.cloudinary.com/dz75k6rvk/image/upload/v1750621962/10d2f7b0-413d-47b9-b934-4141c5487492_bxj4ch.jpg'; // Your main profile photo
+        const heroImageWrapper = document.querySelector('.hero-image-wrapper');
+        if (heroImageWrapper) {
+            const imgElement = heroImageWrapper.querySelector('img');
+            if (imgElement) {
+                imgElement.src = yourPhotoUrl;
+            }
+        }
+        // ==== END PHOTO URL UPDATE ====
+
+        // ==== Update YouTube Channel Icon URL HERE ====
+        // Make sure this URL is correct and publicly accessible.
+        const youtubeChannelIconUrl = 'https://res.cloudinary.com/dz75k6rvk/image/upload/v1750622570/23115c10-f79c-40eb-aabb-6c963125b656_dumm2j.jpg'; // Your YouTube channel icon URL
+        const youtubeChannelIcon = document.querySelector('.youtube-card-icon'); // Targeting the specific img class within the youtube-card
+        if (youtubeChannelIcon) {
+            youtubeChannelIcon.src = youtubeChannelIconUrl;
+        }
+        // =========================================================
+
+    </script>
+</body>
+</html>
